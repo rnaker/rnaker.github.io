@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="John Doe"><meta name="renderer" content="webkit"><meta name="copyright" content="John Doe"><meta name="keywords" content="Hexo"><meta name="description" content=""><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Mac OS下利用Clion开发STM32 · Rnaker's Blog</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/cat.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">Rnaker</div><div class="profile-signature">for me</div><div class="friends"><div>FRIENDS</div><span><a href="//github.com/Rnaker" target="_black">friendA</a></span><span><a href="//github.com/" target="_black">friendB</a></span><span><a href="//github.com/" target="_black">friendC</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">Rnaker's Blog</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">Mac OS下利用Clion开发STM32</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-edit"></i><span>2021-03-20</span></span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><h1 id="Mac-OS下利用Clion开发STM32"><a href="#Mac-OS下利用Clion开发STM32" class="headerlink" title="Mac OS下利用Clion开发STM32"></a>Mac OS下利用Clion开发STM32</h1><h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><h3 id="1、Clion-下载地址"><a href="#1、Clion-下载地址" class="headerlink" title="1、Clion 下载地址"></a>1、Clion <a href="">下载地址</a></h3><h3 id="2、STM32cubeMX-下载地址"><a href="#2、STM32cubeMX-下载地址" class="headerlink" title="2、STM32cubeMX 下载地址"></a>2、STM32cubeMX <a href="">下载地址</a></h3><h3 id="3、arm-none-eabi-gcc-这是用来编译stm32程序的交叉编译工具链，利用Homebrew进行安装"><a href="#3、arm-none-eabi-gcc-这是用来编译stm32程序的交叉编译工具链，利用Homebrew进行安装" class="headerlink" title="3、arm-none-eabi-gcc 这是用来编译stm32程序的交叉编译工具链，利用Homebrew进行安装"></a>3、arm-none-eabi-gcc 这是用来编译stm32程序的交叉编译工具链，利用Homebrew进行安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">brew tap ArmMbed/homebrew-formulae</span><br><span class="line">brew install arm-none-eabi-gcc</span><br><span class="line"><span class="comment"># 重启terminal，运行以下命令，如果有信息输出就表示安装好了</span></span><br><span class="line">arm-none-eabi-gcc -v</span><br></pre></td></tr></table></figure>
+<h3 id="4、Openocd-这是用来下载和调试程序用的程序，利用Homebrew进行安装"><a href="#4、Openocd-这是用来下载和调试程序用的程序，利用Homebrew进行安装" class="headerlink" title="4、Openocd 这是用来下载和调试程序用的程序，利用Homebrew进行安装"></a>4、Openocd 这是用来下载和调试程序用的程序，利用Homebrew进行安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install open-ocd</span><br></pre></td></tr></table></figure>
+<h3 id="5、Stlink-对应着stlink下载器，利用Homebrew进行安装"><a href="#5、Stlink-对应着stlink下载器，利用Homebrew进行安装" class="headerlink" title="5、Stlink 对应着stlink下载器，利用Homebrew进行安装"></a>5、Stlink 对应着stlink下载器，利用Homebrew进行安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install stlink</span><br></pre></td></tr></table></figure>
+<h2 id="配置Clion"><a href="#配置Clion" class="headerlink" title="配置Clion"></a>配置Clion</h2><p>打开Clion，点击Preferences-&gt;Build,Execution,Deployment-&gt;Embedded Development，将两个地址填成你自己的，点击Test后没有问题就行，如下图所示<br><img src="471D7342-1C66-482A-A39E-B4912EF4FF8A.png"></p>
+<h2 id="创建Demo工程"><a href="#创建Demo工程" class="headerlink" title="创建Demo工程"></a>创建Demo工程</h2><h3 id="1、用Clion创建新工程的时候选择STM32CubeMX，然后选择项目要保存的路径，点击Creat创建，如下图所示"><a href="#1、用Clion创建新工程的时候选择STM32CubeMX，然后选择项目要保存的路径，点击Creat创建，如下图所示" class="headerlink" title="1、用Clion创建新工程的时候选择STM32CubeMX，然后选择项目要保存的路径，点击Creat创建，如下图所示"></a>1、用Clion创建新工程的时候选择STM32CubeMX，然后选择项目要保存的路径，点击Creat创建，如下图所示</h3><p><img src="A34951A9-378D-4C2C-89F2-A1B5DB9BD8EC.png"></p>
+<h3 id="2、工程创建完成后，会自动创建一个-ioc的文件，点击Open-with-STM32CubeMX，就会自动跳转到STM32CubeMX软件界面，如下图所示"><a href="#2、工程创建完成后，会自动创建一个-ioc的文件，点击Open-with-STM32CubeMX，就会自动跳转到STM32CubeMX软件界面，如下图所示" class="headerlink" title="2、工程创建完成后，会自动创建一个*.ioc的文件，点击Open with STM32CubeMX，就会自动跳转到STM32CubeMX软件界面，如下图所示"></a>2、工程创建完成后，会自动创建一个*.ioc的文件，点击Open with STM32CubeMX，就会自动跳转到STM32CubeMX软件界面，如下图所示</h3><p><img src="B3C6146A-BF18-48BF-A2FF-983E5A397E84.png"></p>
+<h3 id="3、通过STM32CubeMX配置我们所使用的芯片、IO、时钟频率等"><a href="#3、通过STM32CubeMX配置我们所使用的芯片、IO、时钟频率等" class="headerlink" title="3、通过STM32CubeMX配置我们所使用的芯片、IO、时钟频率等"></a>3、通过STM32CubeMX配置我们所使用的芯片、IO、时钟频率等</h3><h4 id="1、选择芯片"><a href="#1、选择芯片" class="headerlink" title="1、选择芯片"></a>1、选择芯片</h4><p>点击下图所示位置，更换芯片<br><img src="54DCA1FC-835D-4AA0-BA31-AD4F75C09976.png"></p>
+<h4 id="2、SYS设置"><a href="#2、SYS设置" class="headerlink" title="2、SYS设置"></a>2、SYS设置</h4><p>System Core-&gt;SYS  在Debug栏选择Serial Wire（如果不配置每次下载程序都需要按复位键）<br><img src="F434B2FE-4FC4-4F20-89AC-24DF16B97031.png"></p>
+<h4 id="3、RCC配置"><a href="#3、RCC配置" class="headerlink" title="3、RCC配置"></a>3、RCC配置</h4><p>System Core-&gt;RCC  在HSE(High Speed Clock)栏选择Crystal/Ceramic Resonator<br><img src="D4AC697E-A363-4729-9532-91BE0E243D22.png"></p>
+<h4 id="4、clock配置"><a href="#4、clock配置" class="headerlink" title="4、clock配置"></a>4、clock配置</h4><p>点击Clock Configuration将HCLK改成72MHz（会弹框问你是否选择其他源,确认就ok)<br><img src="2C9FE24E-57E3-444A-A119-41CB487EF805.png"><br><img src="DAA5BAC2-C6DA-4DDF-88E1-926EFEEA7C72.png"></p>
+<h4 id="5、GPIO设置"><a href="#5、GPIO设置" class="headerlink" title="5、GPIO设置"></a>5、GPIO设置</h4><p>对需要使用的引脚进行配置，这里我们以点灯为例，根据电路图，我的开发板LED0接的是PA8，所以对PA8口进行配置。<br>返回Pinout &amp; Configuration界面，在芯片图上找到需要配置的IO口，点击并配置成需要的模式<br><img src="12D0D66D-7C2E-4C6F-9EF9-B4C5363C3064.png"><br>System Core-&gt;GPIO 点击刚所选的IO口进行详细的配置<br><img src="A3AD02B2-2AE2-4139-A955-50D5C2A44EED.png"></p>
+<h4 id="6、生成代码"><a href="#6、生成代码" class="headerlink" title="6、生成代码"></a>6、生成代码</h4><p>点击Project Manager，输入Project Name（这里必须和Clion中的取名保持一致，这样才能保持路径一致，替换文件），Toolchain / IDE 选择SW¥STM32（很重要），点击GENERATE CODE<br><img src="4663F361-1C30-4BA4-B034-6508D1A321B7.png"></p>
+<h4 id="7、回到工程选择Board-Config-file"><a href="#7、回到工程选择Board-Config-file" class="headerlink" title="7、回到工程选择Board Config file"></a>7、回到工程选择Board Config file</h4><p>选择st_nucleo_f103rb.cfg<br>点击Copy to Project &amp; Use，这个文件可以自己配置一个,供你后续的工程使用<br>::不要点击USE，否则不会生成相应的配置文件::<br><img src="ADA75EA2-A65C-4407-9FE7-906481D9224B.png"></p>
+<h4 id="8、修改Board-Config-file"><a href="#8、修改Board-Config-file" class="headerlink" title="8、修改Board Config file"></a>8、修改Board Config file</h4><p>点击st_nucleo_f103rb.cfg，我使用的是stlink-v2，所以修改为stlink-v2<br>注释掉reset_config srst_only，不然后面运行会报错<br><img src="43EC2C59-2574-4FB0-8C76-CC5E21161127.png"></p>
+<h4 id="9、点亮LED灯"><a href="#9、点亮LED灯" class="headerlink" title="9、点亮LED灯"></a>9、点亮LED灯</h4><p>在Core-&gt;Src-&gt;main.c中找到while循环处，在里面写上我们的点灯程序<br><img src="5EBC1659-E4E1-49E6-B5B7-91384159C372.png"></p>
+<h4 id="10、编译、运行"><a href="#10、编译、运行" class="headerlink" title="10、编译、运行"></a>10、编译、运行</h4><p>点击小锤子进行编译，出现Build finished 就表示编译成功了<br>将板子接上stlink并连接电脑，点击▶️运行，出现** Programming Finished **就说明已经下载成功了<br>#嵌入式/stm32</p>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="http://example.com">John Doe</a></p><p> <span>Link:  </span><a href="http://example.com/2021/03/20/Mac-OS%E4%B8%8B%E5%88%A9%E7%94%A8Clion%E5%BC%80%E5%8F%91STM32/">http://example.com/2021/03/20/Mac-OS%E4%B8%8B%E5%88%A9%E7%94%A8Clion%E5%BC%80%E5%8F%91STM32/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="nextSlogan" href="/2021/03/19/hello-world/" title="Hello World"><span>NextPost ></span><br><span class="nextTitle">Hello World</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a target="_blank" rel="noopener" href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Mac-OS%E4%B8%8B%E5%88%A9%E7%94%A8Clion%E5%BC%80%E5%8F%91STM32"><span class="toc-number">1.</span> <span class="toc-text">Mac OS下利用Clion开发STM32</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text">安装环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81Clion-%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="toc-number">1.1.1.</span> <span class="toc-text">1、Clion 下载地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81STM32cubeMX-%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="toc-number">1.1.2.</span> <span class="toc-text">2、STM32cubeMX 下载地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81arm-none-eabi-gcc-%E8%BF%99%E6%98%AF%E7%94%A8%E6%9D%A5%E7%BC%96%E8%AF%91stm32%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E9%93%BE%EF%BC%8C%E5%88%A9%E7%94%A8Homebrew%E8%BF%9B%E8%A1%8C%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.3.</span> <span class="toc-text">3、arm-none-eabi-gcc 这是用来编译stm32程序的交叉编译工具链，利用Homebrew进行安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81Openocd-%E8%BF%99%E6%98%AF%E7%94%A8%E6%9D%A5%E4%B8%8B%E8%BD%BD%E5%92%8C%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F%E7%94%A8%E7%9A%84%E7%A8%8B%E5%BA%8F%EF%BC%8C%E5%88%A9%E7%94%A8Homebrew%E8%BF%9B%E8%A1%8C%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.4.</span> <span class="toc-text">4、Openocd 这是用来下载和调试程序用的程序，利用Homebrew进行安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81Stlink-%E5%AF%B9%E5%BA%94%E7%9D%80stlink%E4%B8%8B%E8%BD%BD%E5%99%A8%EF%BC%8C%E5%88%A9%E7%94%A8Homebrew%E8%BF%9B%E8%A1%8C%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.5.</span> <span class="toc-text">5、Stlink 对应着stlink下载器，利用Homebrew进行安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEClion"><span class="toc-number">1.2.</span> <span class="toc-text">配置Clion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BADemo%E5%B7%A5%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">创建Demo工程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E7%94%A8Clion%E5%88%9B%E5%BB%BA%E6%96%B0%E5%B7%A5%E7%A8%8B%E7%9A%84%E6%97%B6%E5%80%99%E9%80%89%E6%8B%A9STM32CubeMX%EF%BC%8C%E7%84%B6%E5%90%8E%E9%80%89%E6%8B%A9%E9%A1%B9%E7%9B%AE%E8%A6%81%E4%BF%9D%E5%AD%98%E7%9A%84%E8%B7%AF%E5%BE%84%EF%BC%8C%E7%82%B9%E5%87%BBCreat%E5%88%9B%E5%BB%BA%EF%BC%8C%E5%A6%82%E4%B8%8B%E5%9B%BE%E6%89%80%E7%A4%BA"><span class="toc-number">1.3.1.</span> <span class="toc-text">1、用Clion创建新工程的时候选择STM32CubeMX，然后选择项目要保存的路径，点击Creat创建，如下图所示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%B7%A5%E7%A8%8B%E5%88%9B%E5%BB%BA%E5%AE%8C%E6%88%90%E5%90%8E%EF%BC%8C%E4%BC%9A%E8%87%AA%E5%8A%A8%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-ioc%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%8C%E7%82%B9%E5%87%BBOpen-with-STM32CubeMX%EF%BC%8C%E5%B0%B1%E4%BC%9A%E8%87%AA%E5%8A%A8%E8%B7%B3%E8%BD%AC%E5%88%B0STM32CubeMX%E8%BD%AF%E4%BB%B6%E7%95%8C%E9%9D%A2%EF%BC%8C%E5%A6%82%E4%B8%8B%E5%9B%BE%E6%89%80%E7%A4%BA"><span class="toc-number">1.3.2.</span> <span class="toc-text">2、工程创建完成后，会自动创建一个*.ioc的文件，点击Open with STM32CubeMX，就会自动跳转到STM32CubeMX软件界面，如下图所示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E9%80%9A%E8%BF%87STM32CubeMX%E9%85%8D%E7%BD%AE%E6%88%91%E4%BB%AC%E6%89%80%E4%BD%BF%E7%94%A8%E7%9A%84%E8%8A%AF%E7%89%87%E3%80%81IO%E3%80%81%E6%97%B6%E9%92%9F%E9%A2%91%E7%8E%87%E7%AD%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">3、通过STM32CubeMX配置我们所使用的芯片、IO、时钟频率等</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E9%80%89%E6%8B%A9%E8%8A%AF%E7%89%87"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">1、选择芯片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81SYS%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">2、SYS设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81RCC%E9%85%8D%E7%BD%AE"><span class="toc-number">1.3.3.3.</span> <span class="toc-text">3、RCC配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81clock%E9%85%8D%E7%BD%AE"><span class="toc-number">1.3.3.4.</span> <span class="toc-text">4、clock配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81GPIO%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.3.3.5.</span> <span class="toc-text">5、GPIO设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6%E3%80%81%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81"><span class="toc-number">1.3.3.6.</span> <span class="toc-text">6、生成代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7%E3%80%81%E5%9B%9E%E5%88%B0%E5%B7%A5%E7%A8%8B%E9%80%89%E6%8B%A9Board-Config-file"><span class="toc-number">1.3.3.7.</span> <span class="toc-text">7、回到工程选择Board Config file</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8%E3%80%81%E4%BF%AE%E6%94%B9Board-Config-file"><span class="toc-number">1.3.3.8.</span> <span class="toc-text">8、修改Board Config file</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9%E3%80%81%E7%82%B9%E4%BA%AELED%E7%81%AF"><span class="toc-number">1.3.3.9.</span> <span class="toc-text">9、点亮LED灯</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10%E3%80%81%E7%BC%96%E8%AF%91%E3%80%81%E8%BF%90%E8%A1%8C"><span class="toc-number">1.3.3.10.</span> <span class="toc-text">10、编译、运行</span></a></li></ol></li></ol></li></ol></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>
