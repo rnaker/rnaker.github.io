@@ -29,7 +29,10 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Rnake" type="application/atom+xml">
+</head>
 
 
 
@@ -448,25 +451,41 @@
                 
 
                 
-
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-03-20
+                </div>
                 
 
                 
 
                 
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
             </div>
         </div>
         <hr class="clearfix">
 
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
         
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Mac-OS下利用Clion开发STM32"><a href="#Mac-OS下利用Clion开发STM32" class="headerlink" title="Mac OS下利用Clion开发STM32"></a>Mac OS下利用Clion开发STM32</h1><h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><h3 id="1、Clion-下载地址"><a href="#1、Clion-下载地址" class="headerlink" title="1、Clion 下载地址"></a>1、Clion <a href="">下载地址</a></h3><h3 id="2、STM32cubeMX-下载地址"><a href="#2、STM32cubeMX-下载地址" class="headerlink" title="2、STM32cubeMX 下载地址"></a>2、STM32cubeMX <a href="">下载地址</a></h3><h3 id="3、arm-none-eabi-gcc-这是用来编译stm32程序的交叉编译工具链，利用Homebrew进行安装"><a href="#3、arm-none-eabi-gcc-这是用来编译stm32程序的交叉编译工具链，利用Homebrew进行安装" class="headerlink" title="3、arm-none-eabi-gcc 这是用来编译stm32程序的交叉编译工具链，利用Homebrew进行安装"></a>3、arm-none-eabi-gcc 这是用来编译stm32程序的交叉编译工具链，利用Homebrew进行安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">brew tap ArmMbed/homebrew-formulae</span><br><span class="line">brew install arm-none-eabi-gcc</span><br><span class="line"><span class="comment"># 重启terminal，运行以下命令，如果有信息输出就表示安装好了</span></span><br><span class="line">arm-none-eabi-gcc -v</span><br></pre></td></tr></table></figure>
-<h3 id="4、Openocd-这是用来下载和调试程序用的程序，利用Homebrew进行安装"><a href="#4、Openocd-这是用来下载和调试程序用的程序，利用Homebrew进行安装" class="headerlink" title="4、Openocd 这是用来下载和调试程序用的程序，利用Homebrew进行安装"></a>4、Openocd 这是用来下载和调试程序用的程序，利用Homebrew进行安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install open-ocd</span><br></pre></td></tr></table></figure>
-<h3 id="5、Stlink-对应着stlink下载器，利用Homebrew进行安装"><a href="#5、Stlink-对应着stlink下载器，利用Homebrew进行安装" class="headerlink" title="5、Stlink 对应着stlink下载器，利用Homebrew进行安装"></a>5、Stlink 对应着stlink下载器，利用Homebrew进行安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install stlink</span><br></pre></td></tr></table></figure>
+                <h1 id="Mac-OS下利用Clion开发STM32"><a href="#Mac-OS下利用Clion开发STM32" class="headerlink" title="Mac OS下利用Clion开发STM32"></a>Mac OS下利用Clion开发STM32</h1><h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><h3 id="1、Clion-下载地址"><a href="#1、Clion-下载地址" class="headerlink" title="1、Clion 下载地址"></a>1、Clion <a href="">下载地址</a></h3><h3 id="2、STM32cubeMX-下载地址"><a href="#2、STM32cubeMX-下载地址" class="headerlink" title="2、STM32cubeMX 下载地址"></a>2、STM32cubeMX <a href="">下载地址</a></h3><h3 id="3、arm-none-eabi-gcc-这是用来编译stm32程序的交叉编译工具链，利用Homebrew进行安装"><a href="#3、arm-none-eabi-gcc-这是用来编译stm32程序的交叉编译工具链，利用Homebrew进行安装" class="headerlink" title="3、arm-none-eabi-gcc 这是用来编译stm32程序的交叉编译工具链，利用Homebrew进行安装"></a>3、arm-none-eabi-gcc 这是用来编译stm32程序的交叉编译工具链，利用Homebrew进行安装</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew tap ArmMbed/homebrew-formulae
+brew <span class="token function">install</span> arm-none-eabi-gcc
+<span class="token comment"># 重启terminal，运行以下命令，如果有信息输出就表示安装好了</span>
+arm-none-eabi-gcc -v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="4、Openocd-这是用来下载和调试程序用的程序，利用Homebrew进行安装"><a href="#4、Openocd-这是用来下载和调试程序用的程序，利用Homebrew进行安装" class="headerlink" title="4、Openocd 这是用来下载和调试程序用的程序，利用Homebrew进行安装"></a>4、Openocd 这是用来下载和调试程序用的程序，利用Homebrew进行安装</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> open-ocd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="5、Stlink-对应着stlink下载器，利用Homebrew进行安装"><a href="#5、Stlink-对应着stlink下载器，利用Homebrew进行安装" class="headerlink" title="5、Stlink 对应着stlink下载器，利用Homebrew进行安装"></a>5、Stlink 对应着stlink下载器，利用Homebrew进行安装</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> stlink<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="配置Clion"><a href="#配置Clion" class="headerlink" title="配置Clion"></a>配置Clion</h2><p>打开Clion，点击Preferences-&gt;Build,Execution,Deployment-&gt;Embedded Development，将两个地址填成你自己的，点击Test后没有问题就行，如下图所示<br><img src="471D7342-1C66-482A-A39E-B4912EF4FF8A.png"></p>
 <h2 id="创建Demo工程"><a href="#创建Demo工程" class="headerlink" title="创建Demo工程"></a>创建Demo工程</h2><h3 id="1、用Clion创建新工程的时候选择STM32CubeMX，然后选择项目要保存的路径，点击Creat创建，如下图所示"><a href="#1、用Clion创建新工程的时候选择STM32CubeMX，然后选择项目要保存的路径，点击Creat创建，如下图所示" class="headerlink" title="1、用Clion创建新工程的时候选择STM32CubeMX，然后选择项目要保存的路径，点击Creat创建，如下图所示"></a>1、用Clion创建新工程的时候选择STM32CubeMX，然后选择项目要保存的路径，点击Creat创建，如下图所示</h3><p><img src="A34951A9-378D-4C2C-89F2-A1B5DB9BD8EC.png"></p>
 <h3 id="2、工程创建完成后，会自动创建一个-ioc的文件，点击Open-with-STM32CubeMX，就会自动跳转到STM32CubeMX软件界面，如下图所示"><a href="#2、工程创建完成后，会自动创建一个-ioc的文件，点击Open-with-STM32CubeMX，就会自动跳转到STM32CubeMX软件界面，如下图所示" class="headerlink" title="2、工程创建完成后，会自动创建一个*.ioc的文件，点击Open with STM32CubeMX，就会自动跳转到STM32CubeMX软件界面，如下图所示"></a>2、工程创建完成后，会自动创建一个*.ioc的文件，点击Open with STM32CubeMX，就会自动跳转到STM32CubeMX软件界面，如下图所示</h3><p><img src="B3C6146A-BF18-48BF-A2FF-983E5A397E84.png"></p>
@@ -506,7 +525,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/03/20/Mac-OS%E4%B8%8B%E5%88%A9%E7%94%A8Clion%E5%BC%80%E5%8F%91STM32/">http://example.com/2021/03/20/Mac-OS%E4%B8%8B%E5%88%A9%E7%94%A8Clion%E5%BC%80%E5%8F%91STM32/</a>
+                    <a href="http://example.com/2021/03/20/mac-os-xia-li-yong-clion-kai-fa-stm32/">http://example.com/2021/03/20/mac-os-xia-li-yong-clion-kai-fa-stm32/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -716,7 +735,7 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2021/03/20/Mac-OS%E4%B8%8B%E5%88%A9%E7%94%A8Clion%E5%BC%80%E5%8F%91STM32/">
+                <a href="/2021/03/20/mac-os-xia-li-yong-clion-kai-fa-stm32/">
                     <div class="card-image">
                         
                         
