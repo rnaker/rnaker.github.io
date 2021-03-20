@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-03-19T16:59:29.235Z</updated>
+  <updated>2021-03-19T09:36:16.176Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,27 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Mac OS下利用Clion开发STM32</title>
-    <link href="http://example.com/2021/03/20/mac-os-xia-li-yong-clion-kai-fa-stm32/"/>
-    <id>http://example.com/2021/03/20/mac-os-xia-li-yong-clion-kai-fa-stm32/</id>
-    <published>2021-03-19T16:58:34.000Z</published>
-    <updated>2021-03-19T16:59:29.235Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Mac-OS下利用Clion开发STM32&quot;&gt;&lt;a href=&quot;#Mac-OS下利用Clion开发STM32&quot; class=&quot;headerlink&quot; title=&quot;Mac OS下利用Clion开发STM32&quot;&gt;&lt;/a&gt;Mac</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
   
   <entry>
     <title>Hello World</title>
