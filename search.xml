@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Ubuntu20.04服务器安装VNC远程桌面</title>
+      <link href="2021/04/10/ubuntu20-04-fu-wu-qi-an-zhuang-vnc-yuan-cheng-zhuo-mian/"/>
+      <url>2021/04/10/ubuntu20-04-fu-wu-qi-an-zhuang-vnc-yuan-cheng-zhuo-mian/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Ubuntu20-04服务器安装VNC远程桌面"><a href="#Ubuntu20-04服务器安装VNC远程桌面" class="headerlink" title="Ubuntu20.04服务器安装VNC远程桌面"></a>Ubuntu20.04服务器安装VNC远程桌面</h1><h2 id="1、更新软件缓存和系统软件"><a href="#1、更新软件缓存和系统软件" class="headerlink" title="1、更新软件缓存和系统软件"></a>1、更新软件缓存和系统软件</h2><p>::-y:::表示默认同意，如果没有::-y::参数，命令也可以执行，但是系统会提示你是否安装。</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">sudo</span> <span class="token function">apt</span> update -y <span class="token comment"># 更新软件缓存</span>$ <span class="token function">sudo</span> <span class="token function">apt</span> upgrade -y <span class="token comment"># 更新系统软件（可选）</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h2 id="2、安装tasksel，用于管理服务器的软件集，方便管理员管理软件套件"><a href="#2、安装tasksel，用于管理服务器的软件集，方便管理员管理软件套件" class="headerlink" title="2、安装tasksel，用于管理服务器的软件集，方便管理员管理软件套件"></a>2、安装tasksel，用于管理服务器的软件集，方便管理员管理软件套件</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> tasksel -y <span class="token comment"># 安装tasksel</span>$ <span class="token function">sudo</span> tasksel <span class="token comment"># 启动tasksel</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><img src="/2021/04/10/ubuntu20-04-fu-wu-qi-an-zhuang-vnc-yuan-cheng-zhuo-mian/01.png"><br>按下Enter键，进入如下界面<br><img src="/2021/04/10/ubuntu20-04-fu-wu-qi-an-zhuang-vnc-yuan-cheng-zhuo-mian/02.png"><br>通过上下按键移动到Ubuntu desktop处，按下Enter确认，被选中后的软件会在框内显示::*::。</p><p><img src="/2021/04/10/ubuntu20-04-fu-wu-qi-an-zhuang-vnc-yuan-cheng-zhuo-mian/03.png"></p><h2 id="3、设置开机启动图形界面"><a href="#3、设置开机启动图形界面" class="headerlink" title="3、设置开机启动图形界面"></a>3、设置开机启动图形界面</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ systemctl set-default graphical.target <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="4、安装和配置TigerVNC-Server"><a href="#4、安装和配置TigerVNC-Server" class="headerlink" title="4、安装和配置TigerVNC Server"></a>4、安装和配置TigerVNC Server</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> tigervnc-standalone-server -y <span class="token comment"># 安装TigerVNC Server</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="5、创建一个普通用户，用于VNC登陆桌面（可选）"><a href="#5、创建一个普通用户，用于VNC登陆桌面（可选）" class="headerlink" title="5、创建一个普通用户，用于VNC登陆桌面（可选）"></a>5、创建一个普通用户，用于VNC登陆桌面（可选）</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ adduser uservnc <span class="token comment"># 添加一个用户</span>$ <span class="token function">su</span> - uservnc <span class="token comment"># 切换到uservnc用户</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>如果已经有普通用户或者想直接用root用户的，直接执行以下命令，然后输入两次密码（用于VNC登陆，必须记住）</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ vncpasswd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="/2021/04/10/ubuntu20-04-fu-wu-qi-an-zhuang-vnc-yuan-cheng-zhuo-mian/04.png"></p><h2 id="6、启动VNC服务"><a href="#6、启动VNC服务" class="headerlink" title="6、启动VNC服务"></a>6、启动VNC服务</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ vncserver -localhost no <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>出现以下结果，即表示启动成功：<br><img src="/2021/04/10/ubuntu20-04-fu-wu-qi-an-zhuang-vnc-yuan-cheng-zhuo-mian/05.png"></p><h2 id="7、查看VNC运行状态"><a href="#7、查看VNC运行状态" class="headerlink" title="7、查看VNC运行状态"></a>7、查看VNC运行状态</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ vncserver -list<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>如果结果如下图所示，就表示VNC正在运行，且端口是5901<br><img src="/2021/04/10/ubuntu20-04-fu-wu-qi-an-zhuang-vnc-yuan-cheng-zhuo-mian/06.png"></p><h2 id="8、关闭VNC显示"><a href="#8、关闭VNC显示" class="headerlink" title="8、关闭VNC显示"></a>8、关闭VNC显示</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ vncserver -kill :1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="/2021/04/10/ubuntu20-04-fu-wu-qi-an-zhuang-vnc-yuan-cheng-zhuo-mian/07.png"></p><h2 id="9、使用VNC-Viewer远程登录服务器"><a href="#9、使用VNC-Viewer远程登录服务器" class="headerlink" title="9、使用VNC Viewer远程登录服务器"></a>9、使用VNC Viewer远程登录服务器</h2><p>下载VNC Viewer[地址]<br>打开VNC Viewer，并输入服务器公网地址和对应的VNC端口号，如下图所示<br><img src="/2021/04/10/ubuntu20-04-fu-wu-qi-an-zhuang-vnc-yuan-cheng-zhuo-mian/08.png"><br>在弹出的窗口输入VNC密码（之前叫必须记住的！！！），即可连接成功<br><img src="/2021/04/10/ubuntu20-04-fu-wu-qi-an-zhuang-vnc-yuan-cheng-zhuo-mian/09.png"></p><p>#ubuntu</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> VNC </tag>
+            
+            <tag> Ubuntu </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Mac OS下利用Clion开发STM32</title>
       <link href="2021/03/20/mac-os-xia-li-yong-clion-kai-fa-stm32/"/>
       <url>2021/03/20/mac-os-xia-li-yong-clion-kai-fa-stm32/</url>

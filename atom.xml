@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-03-22T16:50:43.786Z</updated>
+  <updated>2021-04-09T17:41:18.268Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu20.04服务器安装VNC远程桌面</title>
+    <link href="http://example.com/2021/04/10/ubuntu20-04-fu-wu-qi-an-zhuang-vnc-yuan-cheng-zhuo-mian/"/>
+    <id>http://example.com/2021/04/10/ubuntu20-04-fu-wu-qi-an-zhuang-vnc-yuan-cheng-zhuo-mian/</id>
+    <published>2021-04-09T17:34:42.000Z</published>
+    <updated>2021-04-09T17:41:18.268Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Ubuntu20-04服务器安装VNC远程桌面&quot;&gt;&lt;a href=&quot;#Ubuntu20-04服务器安装VNC远程桌面&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="服务器" scheme="http://example.com/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+    <category term="VNC" scheme="http://example.com/tags/VNC/"/>
+    
+    <category term="Ubuntu" scheme="http://example.com/tags/Ubuntu/"/>
+    
+  </entry>
   
   <entry>
     <title>Mac OS下利用Clion开发STM32</title>
