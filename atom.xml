@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-04-12T12:51:50.887Z</updated>
+  <updated>2021-04-12T12:55:31.216Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,24 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>深度学习笔记</title>
-    <link href="http://example.com/2021/04/12/shen-du-xue-xi-bi-ji/"/>
-    <id>http://example.com/2021/04/12/shen-du-xue-xi-bi-ji/</id>
+    <title>计算机视觉基础笔记</title>
+    <link href="http://example.com/2021/04/12/ji-suan-ji-shi-jue-ji-chu-bi-ji/"/>
+    <id>http://example.com/2021/04/12/ji-suan-ji-shi-jue-ji-chu-bi-ji/</id>
+    <published>2021-04-12T12:55:31.000Z</published>
+    <updated>2021-04-12T12:55:31.216Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>计算机视觉与深度学习笔记</title>
+    <link href="http://example.com/2021/04/12/ji-suan-ji-shi-jue-yu-shen-du-xue-xi-bi-ji/"/>
+    <id>http://example.com/2021/04/12/ji-suan-ji-shi-jue-yu-shen-du-xue-xi-bi-ji/</id>
     <published>2021-04-12T12:50:34.000Z</published>
-    <updated>2021-04-12T12:51:50.887Z</updated>
+    <updated>2021-04-12T12:55:46.519Z</updated>
     
     
     
