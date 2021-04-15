@@ -527,7 +527,7 @@ arm-none-eabi-gcc -v<span aria-hidden="true" class="line-numbers-rows"><span></s
 <h4 id="7、回到工程选择Board-Config-file"><a href="#7、回到工程选择Board-Config-file" class="headerlink" title="7、回到工程选择Board Config file"></a>7、回到工程选择Board Config file</h4><p>选择st_nucleo_f103rb.cfg<br>点击Copy to Project &amp; Use，这个文件可以自己配置一个,供你后续的工程使用<br>::不要点击USE，否则不会生成相应的配置文件::<br><img src="/2021/03/20/mac-os-xia-li-yong-clion-kai-fa-stm32/12.png"></p>
 <h4 id="8、修改Board-Config-file"><a href="#8、修改Board-Config-file" class="headerlink" title="8、修改Board Config file"></a>8、修改Board Config file</h4><p>点击st_nucleo_f103rb.cfg，我使用的是stlink-v2，所以修改为stlink-v2<br>注释掉reset_config srst_only，不然后面运行会报错<br><img src="/2021/03/20/mac-os-xia-li-yong-clion-kai-fa-stm32/13.png"></p>
 <h4 id="9、点亮LED灯"><a href="#9、点亮LED灯" class="headerlink" title="9、点亮LED灯"></a>9、点亮LED灯</h4><p>在Core-&gt;Src-&gt;main.c中找到while循环处，在里面写上我们的点灯程序<br><img src="/2021/03/20/mac-os-xia-li-yong-clion-kai-fa-stm32/14.png"></p>
-<h4 id="10、编译、运行"><a href="#10、编译、运行" class="headerlink" title="10、编译、运行"></a>10、编译、运行</h4><p>点击小锤子进行编译，出现Build finished 就表示编译成功了<br>将板子接上stlink并连接电脑，点击▶️运行，出现** Programming Finished **就说明已经下载成功了<br>#嵌入式/stm32</p>
+<h4 id="10、编译、运行"><a href="#10、编译、运行" class="headerlink" title="10、编译、运行"></a>10、编译、运行</h4><p>点击小锤子进行编译，出现Build finished 就表示编译成功了<br>将板子接上stlink并连接电脑，点击▶️运行，出现** Programming Finished **就说明已经下载成功了</p>
 
                 
             </div>
