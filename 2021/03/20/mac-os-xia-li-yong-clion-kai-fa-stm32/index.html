@@ -29,9 +29,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Rnake" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Rnake" type="application/atom+xml">
 </head>
 
 
@@ -503,7 +503,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="Mac-OS下利用Clion开发STM32"><a href="#Mac-OS下利用Clion开发STM32" class="headerlink" title="Mac OS下利用Clion开发STM32"></a>Mac OS下利用Clion开发STM32</h1><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p><strong>很少有人利用Mac电脑来开发STM32等一系列的嵌入式设备，最近偶然发现Clion在创建工程的时候，多出来了一个选项：STM32CubeMX，一下就联想到了STM32，于是就百度了一下，顺便记录下在Mac下学习STM32的过程。</strong></p>
-<h1 id="一、安装环境"><a href="#一、安装环境" class="headerlink" title="一、安装环境"></a>一、安装环境</h1><h3 id="1、-Clion下载-密码："><a href="#1、-Clion下载-密码：" class="headerlink" title="1、 Clion下载[密码：]"></a>1、 <a href="">Clion下载</a>[密码：]</h3><h3 id="2、STM32cubeMX下载-密码："><a href="#2、STM32cubeMX下载-密码：" class="headerlink" title="2、STM32cubeMX下载[密码：]"></a>2、<a href="">STM32cubeMX下载</a>[密码：]</h3><h3 id="3、Homebrew安装使用教程"><a href="#3、Homebrew安装使用教程" class="headerlink" title="3、Homebrew安装使用教程"></a>3、Homebrew安装使用教程</h3><p><strong>Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。</strong><br>::<a href="">Homebrew教程</a>::</p>
+<h1 id="一、安装环境"><a href="#一、安装环境" class="headerlink" title="一、安装环境"></a>一、安装环境</h1><h3 id="1、-Clion下载-密码："><a href="#1、-Clion下载-密码：" class="headerlink" title="1、 Clion下载[密码：]"></a>1、 <a href="">Clion下载</a>[密码：]</h3><h3 id="2、STM32cubeMX下载-密码："><a href="#2、STM32cubeMX下载-密码：" class="headerlink" title="2、STM32cubeMX下载[密码：]"></a>2、<a href="">STM32cubeMX下载</a>[密码：]</h3><h3 id="3、Homebrew安装使用教程"><a href="#3、Homebrew安装使用教程" class="headerlink" title="3、Homebrew安装使用教程"></a>3、Homebrew安装使用教程</h3><p><strong>Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。</strong><br><strong><a href="">Homebrew教程</a></strong></p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ brew tap ArmMbed/homebrew-formulae
 $ brew <span class="token function">install</span> arm-none-eabi-gcc
 <span class="token comment"># 重启terminal，运行以下命令，如果有信息输出就表示安装好了</span>
